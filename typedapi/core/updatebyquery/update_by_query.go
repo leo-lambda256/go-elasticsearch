@@ -41,6 +41,7 @@ import (
 	"github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/expandwildcard"
 	"github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/operator"
 	"github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/searchtype"
+	"github.com/elastic/go-elasticsearch/v8/typedapi/types/enums/refresh"
 )
 
 const (
@@ -359,8 +360,8 @@ func (r *UpdateByQuery) Preference(preference string) *UpdateByQuery {
 
 // Refresh Should the affected indexes be refreshed?
 // API name: refresh
-func (r *UpdateByQuery) Refresh(refresh bool) *UpdateByQuery {
-	r.values.Set("refresh", strconv.FormatBool(refresh))
+func (r *UpdateByQuery) Refresh(refresh refresh.Refresh) *UpdateByQuery {
+	r.values.Set("refresh", refresh.String())
 
 	return r
 }
